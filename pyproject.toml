@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "multicamera-calibration"
+description = "Tool for multicamera calibration based on pycolmap."
+version = "1.0.0"
+readme = "README.md"
+authors = [
+  { name = "Luca Morelli", email = "lcmorelli.eng@gmail.com" },
+]
+requires-python = ">=3.10"
+keywords = [
+  "calibration",
+  "multi-camera",
+  "sfm",
+]
+
+dependencies = [
+  "numpy==2.2.6",
+  "pyyaml==6.0.3",
+  "pycolmap==4.0.2",
+  "opencv-python",
+  "matplotlib>=3.10.9",
+  "pyceres>=2.6",
+  "seaborn>=0.13.2",
+  "reportlab>=5.0.1",
+  "scipy>=1.15.3",
+  "pandas>=2.3.3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+]
+
+[project.urls]
+Homepage = "https://github.com/3DOM-FBK/"
+Documentation = "https://github.com/3DOM-FBK/"
+Download = "https://github.com/3DOM-FBK/"
+"Source Code" = "https://github.com/3DOM-FBK/"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/multicamera_calibration"]
+
+[tool.hatch.version]
+path = "src/multicamera_calibration/__init__.py"
+
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib"]
+
+[tool.bumpver]
+current_version = "1.0.0"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message = "bump version {old_version} -> {new_version}"
+commit = true
+tag = false
+push = false
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = ['current_version = "{version}"', 'version = "{version}"']
+"src/deep_image_matching/__init__.py" = ["{version}"]
